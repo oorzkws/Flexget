@@ -130,6 +130,10 @@ class cached:
         def wrapped_func(*args, **kwargs):
             # get task from method parameters
             task = args[1]
+
+            # we don't want caching on this version
+            task.options.nocache = True
+
             self.config_hash = get_config_hash(args[2])
 
             logger.trace('self.name: {}', self.name)
